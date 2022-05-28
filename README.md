@@ -1,3 +1,15 @@
+# Importent Command
+ * component create
+ * ng g component owner/owner-list --skip-tests
+ * 
+ * service create
+ * ng g service shared/services/error-handler --skip-tests
+ * 
+ * Module create
+ * ng g module owner --routing=true --module app.module
+ * 
+ * 
+
 # AccountOwnerClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
