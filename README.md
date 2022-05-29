@@ -5,6 +5,9 @@
  * service create
  * ng g service shared/services/error-handler --skip-tests
  * 
+ * Directive create
+ * ng g directive shared/directives/append --skip-tests
+ *
  * Module create
  * ng g module owner --routing=true --module app.module
  * 

@@ -17,7 +17,7 @@ export class SuccessModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onOkClick = () => {
+  onOkClicked = () => {
     this.redirectOnOk.emit();
     this.bsModalRef.hide();
   }
