@@ -8,7 +8,8 @@
  * Module create
  * ng g module owner --routing=true --module app.module
  * 
- * 
+ * shared module create
+ * ng g module shared --module owner 
 
 # AccountOwnerClient
 
