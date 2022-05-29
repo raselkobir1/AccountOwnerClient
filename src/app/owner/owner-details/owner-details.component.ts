@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Owner } from '../../_interfaces/owner.model';
+import { Account } from '../../_interfaces/account.model';
 import { OwnerRepositoryService } from '../../shared/services/owner-repository.service';
 import { ErrorHandlerService } from '../../shared/services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -33,6 +34,9 @@ export class OwnerDetailsComponent implements OnInit {
         this.errorMessage = this.errorHandler.errorMessage; // errorMessage is a property of ErrorHandlerService
       }
     })
+  }
+  public printToConsole = (param: Account) => {
+    console.log('Account parameter from the child component: ', param);
   }
 
 }
