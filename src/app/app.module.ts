@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 
 import { OwnerModule } from './owner/owner.module';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component'
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
     CollapseModule.forRoot(),
     OwnerModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
