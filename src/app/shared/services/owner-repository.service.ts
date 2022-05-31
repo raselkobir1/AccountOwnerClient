@@ -3,6 +3,7 @@ import { EnvironmentUrlService } from './environment-url.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OwnerForCreation } from 'src/app/_interfaces/OwnerForCreation';
+import { OwnerForUpdate } from 'src/app/_interfaces/OwnerForUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class OwnerRepositoryService {
   public createOwner =(route: string, owner: OwnerForCreation) => { 
     return this.http.post<Owner>(this.createCompleteRoute(route, this.envUrl.urlAddress), owner, this.generateHeaders());
   }
-  public updateOwner = (route: string, owner: Owner) => {
+  public updateOwner = (route: string, owner: OwnerForUpdate) => {
     return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), owner, this.generateHeaders());
   }
   public deleteOwner = (route: string) => {
