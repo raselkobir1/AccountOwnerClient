@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'details/:id', component: OwnerDetailsComponent},
   { path: 'create', component: OwnerCreateComponent},
   { path: 'update/:id', component: OwnerUpdateComponent},
-  { path: 'delete/:id', component: OwnerDeleteComponent }
+  { path: 'delete/:id', component: OwnerDeleteComponent },
 ];
 
 @NgModule({

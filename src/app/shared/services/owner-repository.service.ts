@@ -11,7 +11,7 @@ import { OwnerForUpdate } from 'src/app/_interfaces/OwnerForUpdate';
 export class OwnerRepositoryService {
 
   constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
-
+  
   public getOwners = (route: string) => {
     return this.http.get<Owner[]>(this.createCompleteRoute(route, this.envUrl.urlAddress)); // returns an Observable
   }

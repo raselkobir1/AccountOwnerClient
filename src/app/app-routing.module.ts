@@ -4,9 +4,11 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path:'home', component: HomeComponent},
+  { path:'login', component: LoginComponent},
   { path: 'owner', loadChildren: () => import('./owner/owner.module').then( m => m.OwnerModule)},
   { path:'404', component: NotFoundComponent},
   { path:'500', component:InternalServerComponent },

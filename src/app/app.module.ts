@@ -13,6 +13,9 @@ import { MenuComponent } from './menu/menu.component';
 import { OwnerModule } from './owner/owner.module';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component'
 import { DatePipe } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     MenuComponent,
     NotFoundComponent,
-    InternalServerComponent
+    InternalServerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
     CollapseModule.forRoot(),
-    OwnerModule
+    OwnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

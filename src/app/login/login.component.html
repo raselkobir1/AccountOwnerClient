@@ -1,0 +1,18 @@
+<form [formGroup]="loginForm">
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" formControlName="userName" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label class="form-check-label"><input type="checkbox"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onLoginClick()">Sign in</button>
+</form>       
+
+<div>
+    <pre>{{loginForm.value | json}}</pre>
+</div>
