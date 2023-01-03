@@ -15,6 +15,7 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
 import { DatePipe } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     InternalServerComponent,
     LoginComponent,
+    UserRegistrationComponent,
   ],
   imports: [
     BrowserModule,

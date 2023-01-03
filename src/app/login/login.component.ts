@@ -17,8 +17,10 @@ export class LoginComponent implements OnInit {
    }
   public loginForm: FormGroup;
   ngOnInit(): void {
+    this.loginForm.controls.userName.setValue('raselKabir');
+    this.loginForm.controls.password.setValue('asd123@');
   }
-  //var myObject = {} as IObject
+
   public login ={} as Login;
   createFormInstance(){
     this.loginForm = this.formBuilder.group({
@@ -27,16 +29,21 @@ export class LoginComponent implements OnInit {
   })
 }
   onLoginClick(){
-      this.login.UserName = 'raselKabir';//this.loginForm.controls.userName.value,
-      this.login.Password ='asd123@'; //this.loginForm.controls.password.value
+      this.login.UserName = this.loginForm.controls.userName.value; // 'raselKabir';//this.loginForm.controls.userName.value,
+      this.login.Password = this.loginForm.controls.password.value; //'asd123@'; //this.loginForm.controls.password.value
 
     console.log(this.login);
     const apiUri: string = `api/authentication/login`;
     this.repository.userLogin(apiUri, this.login).subscribe({
-      next: (login: Login) => this.login = login,
+      next: (login: any)=>{
+        var res = login;
+        localStorage.setItem('userToken', res.accessToken);
+        localStorage.setItem('tokenExpired', res.expireIn);
+        //var usertoken=localStorage.getItem("userToken");
+        console.log('login response :' ,res)
+      },
         error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })
-    console.log('login response :' , this.login);
   }
 
 }
