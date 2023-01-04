@@ -1,3 +1,4 @@
+import {CanActivate, Router } from '@angular/router';
 import { Login } from './../_interfaces/login.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +14,7 @@ import { NotificationService } from '../shared/services/notification.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService,private notification:NotificationService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService,private notification:NotificationService) {
     this.createFormInstance();
    }
   public loginForm: FormGroup;
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
   })
 }
-  onLoginClick(){
+  onLoginClick() {
       this.login.UserName = this.loginForm.controls.userName.value; // 'raselKabir';//this.loginForm.controls.userName.value,
       this.login.Password = this.loginForm.controls.password.value; //'asd123@'; //this.loginForm.controls.password.value
 
@@ -43,9 +44,14 @@ export class LoginComponent implements OnInit {
         //var usertoken=localStorage.getItem("userToken");
         console.log('login response :' ,res)
         this.notification.showSuccess("Login successfully","Thank you !");
+        this.router.navigate(['home']);
       },
         error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })
+  }
+
+  onClickRegistration(){
+    this.router.navigate(['registration']);
   }
 
 }

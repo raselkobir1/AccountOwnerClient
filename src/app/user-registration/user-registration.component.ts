@@ -5,6 +5,7 @@ import { AccountRepositoryService } from '../shared/services/account-repository.
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../shared/services/error-handler.service';
 import { NotificationService } from '../shared/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,7 +14,7 @@ import { NotificationService } from '../shared/services/notification.service';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService, private notification: NotificationService) {
+  constructor(private router:Router, private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService, private notification: NotificationService) {
     this.createFormInstance();
    }
   public registrationForm : FormGroup
@@ -31,7 +32,7 @@ export class UserRegistrationComponent implements OnInit {
       name:['']
   })
 }
-  onClickRegister(){
+  onClickRegister() {
     const apiUri: string = `api/authentication`;
     let name = this.registrationForm.controls.name.value; 
     let spletName = name.split(" ");
@@ -54,5 +55,8 @@ export class UserRegistrationComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })
     console.log('obj :', this.register);
+  }
+  onClickBackToLogin(){
+    this.router.navigate(['login']);
   }
 }
