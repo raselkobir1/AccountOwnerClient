@@ -27,10 +27,10 @@ export class OwnerDeleteComponent implements OnInit {
     const apiUri: string = `api/owner/${ownerId}`;
     this.repository.getOwner(apiUri)
       .subscribe({
-        next: (own: Owner) => this.owner = own,
+        next: (own: Owner) => this.owner = own ,
         error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
       })
-  }
+  } 
 
   redirectToOwnerList = () => {
     this.router.navigate(['/owner/list']);

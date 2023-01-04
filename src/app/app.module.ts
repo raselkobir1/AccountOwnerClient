@@ -13,6 +13,12 @@ import { MenuComponent } from './menu/menu.component';
 import { OwnerModule } from './owner/owner.module';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component'
 import { DatePipe } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +26,9 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     MenuComponent,
     NotFoundComponent,
-    InternalServerComponent
+    InternalServerComponent,
+    LoginComponent,
+    UserRegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,21 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
     CollapseModule.forRoot(),
-    OwnerModule
+    OwnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      countDuplicates: true,
+      maxOpened: 3,
+      closeButton: true,
+      easeTime: 1000,
+      enableHtml: true,
+      progressBar: true,
+      onActivateTick: true,
+    }),
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

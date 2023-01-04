@@ -19,7 +19,7 @@ import { OwnerDeleteComponent } from './owner-delete/owner-delete.component';
     OwnerAccountsComponent,
     OwnerCreateComponent,
     OwnerUpdateComponent,
-    OwnerDeleteComponent
+    OwnerDeleteComponent,
   ],
   imports: [
     CommonModule,
