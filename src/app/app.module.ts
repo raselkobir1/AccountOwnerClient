@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,19 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     CollapseModule.forRoot(),
     OwnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      countDuplicates: true,
+      maxOpened: 3,
+      closeButton: true,
+      easeTime: 1000,
+      enableHtml: true,
+      progressBar: true,
+      onActivateTick: true,
+    }),
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

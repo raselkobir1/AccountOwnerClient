@@ -1,6 +1,10 @@
 import { Registration } from './../_interfaces/userRegistration';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AccountRepositoryService } from '../shared/services/account-repository.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandlerService } from '../shared/services/error-handler.service';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -9,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,) {
+  constructor(private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService, private notification: NotificationService) {
     this.createFormInstance();
    }
   public registrationForm : FormGroup
@@ -20,21 +24,35 @@ export class UserRegistrationComponent implements OnInit {
     this.registrationForm = this.formBuilder.group({
       userName: ['',Validators.required],
       password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
       email:[''],
       phoneNumber:[''],
-      role:[''],
+      roles:[''],
       name:['']
   })
 }
   onClickRegister(){
-    this.register.UserName = this.registrationForm.controls.userName.value; 
-    this.register.Password = this.registrationForm.controls.password.value; 
-    this.register.Email = this.registrationForm.controls.email.value; 
-    this.register.PhoneNumber = this.registrationForm.controls.phoneNumber.value; 
-    this.register.Role = this.registrationForm.controls.role.value; 
-    this.register.Password = this.registrationForm.controls.password.value; 
+    const apiUri: string = `api/authentication`;
     let name = this.registrationForm.controls.name.value; 
-    this.register.FirstName = name;
-    this.register.LastName = name;
+    let spletName = name.split(" ");
+    this.register = {
+      UserName : this.registrationForm.controls.userName.value,
+      Password : this.registrationForm.controls.password.value,
+      ConfirmPassword : this.registrationForm.controls.confirmPassword.value,
+      Email : this.registrationForm.controls.email.value,
+      PhoneNumber : this.registrationForm.controls.phoneNumber.value,
+      Roles : this.registrationForm.controls.roles.value,
+      FirstName : spletName[0],
+      LastName : spletName[1],
+    }
+    this.repository.userRegistration(apiUri, this.register).subscribe({
+      next: (res:any)=>{
+        var x = res;
+        console.log('Registration result :',x);
+        this.notification.showSuccess("User successfully Created", "Success");
+      },
+      error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
+    })
+    console.log('obj :', this.register);
   }
 }

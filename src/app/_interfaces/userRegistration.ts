@@ -4,7 +4,8 @@ export interface Registration {
             LastName: string,
             UserName: string,
             Password: string,
+            ConfirmPassword: string,
             Email: string,
             PhoneNumber:string,
-            Role: string, 
+            Roles: string, 
 }

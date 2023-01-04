@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountRepositoryService } from '../shared/services/account-repository.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../shared/services/error-handler.service';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { ErrorHandlerService } from '../shared/services/error-handler.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService,) {
+  constructor(private formBuilder: FormBuilder, private repository: AccountRepositoryService,private errorHandler: ErrorHandlerService,private notification:NotificationService) {
     this.createFormInstance();
    }
   public loginForm: FormGroup;
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('tokenExpired', res.expireIn);
         //var usertoken=localStorage.getItem("userToken");
         console.log('login response :' ,res)
+        this.notification.showSuccess("Login successfully","Thank you !");
       },
         error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })
