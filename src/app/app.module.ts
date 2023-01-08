@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { CompanyComponent } from './company/company.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     InternalServerComponent,
     LoginComponent,
     UserRegistrationComponent,
+    CompanyComponent,
   ],
   imports: [
     BrowserModule,
