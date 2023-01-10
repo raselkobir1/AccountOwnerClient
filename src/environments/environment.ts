@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'https://localhost:7098'
+  urlAddress: 'http://localhost:7098'
 };
 
 /*
