@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalrService } from '../shared/services/signalr.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public homeText: string;
-  constructor() { }
+  constructor(private signalR: SignalrService) { }
 
   ngOnInit(): void {
+    this.signalR.startConnection();
+    this.signalR.NotificationListener();
     this.homeText = "WELCOME TO ACCOUNT-OWNER APPLICATION";
   }
 

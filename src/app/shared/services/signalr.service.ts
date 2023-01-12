@@ -8,15 +8,15 @@ import {Router} from '@angular/router';
 export class SignalrService {
 
   constructor() { }
-  private hubConnection: any;
+  private hubConnection: signalR.HubConnection;
   public startConnection = () => {
-    //alert('start signalR connection')
     const apiUri: string = `http://localhost:7098/notification`;
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(apiUri, {accessTokenFactory: () => localStorage.getItem('userToken')})
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)
       .build();
+      console.log('Build connection');
     this.hubConnection.start()
       .then(() => console.log('Connection started'))
       // .then(() => this.GetConnectionId())
@@ -24,18 +24,9 @@ export class SignalrService {
   }
 
   public NotificationListener: any = () => {
-    //alert('call signalR notification litioner')
     this.hubConnection.on('notification', (data: any) => {
       console.log('SignalR NotificationListener',data);
-      //this.GetNotificationCount();
-      if (data.message && data.message.trim() !== '') {
-        //this.notificationService.showNotification(data.message, data.title);
-        //console.log('notification listioner connected');
-      }
-      // const sound = new Howl({
-      //   src: ['../../../assets/sound/cute_notification.mp3']
-      // });
-      // sound.play();
+      alert('notification listener call');
     });
   }
 }
