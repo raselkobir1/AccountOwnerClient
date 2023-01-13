@@ -15,13 +15,14 @@ import { Company } from '../_interfaces/companyCreate';
 })
 export class CompanyComponent implements OnInit {
 
-  constructor(private router:Router, private formBuilder: FormBuilder,private notification: NotificationService,private errorHandler: ErrorHandlerService, private repository: CompanyRepositoryService, private signalR : SignalrService) { 
+  constructor(private router:Router, private formBuilder: FormBuilder,private notification: NotificationService,private errorHandler: ErrorHandlerService, private repository: CompanyRepositoryService, public signalR : SignalrService) { 
     this.createFormInstance();
   }
   public company = {} as Company
   public companyRegistrationForm : FormGroup
   ngOnInit(): void {
-   
+    this.signalR.startConnection();
+    this.signalR.NotificationListener();
   }
   createFormInstance(){
     this.companyRegistrationForm = this.formBuilder.group({
@@ -42,8 +43,8 @@ export class CompanyComponent implements OnInit {
         var x = res;
         console.log('Company Registration result :',x);
         this.notification.showSuccess("Company successfully Created", "Success");
-        this.signalR.startConnection();
-        this.signalR.NotificationListener();
+        // this.signalR.startConnection();
+        // this.signalR.NotificationListener();
       },
       error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })

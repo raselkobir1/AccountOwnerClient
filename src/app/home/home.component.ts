@@ -9,7 +9,7 @@ import { SignalrService } from '../shared/services/signalr.service';
 export class HomeComponent implements OnInit {
 
   public homeText: string;
-  constructor(private signalR: SignalrService) { }
+  constructor(public signalR: SignalrService) { }
 
   ngOnInit(): void {
     this.signalR.startConnection();
