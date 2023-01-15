@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import {Router} from '@angular/router';
+import {Howl} from 'howler';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalrService {
 
-  constructor() { }
+  constructor(private notification: NotificationService) { }
   private hubConnection: signalR.HubConnection;
   public data ;
   public startConnection = () => {
@@ -27,8 +29,15 @@ export class SignalrService {
   public NotificationListener: any = () => {
     this.hubConnection.on('notification', (data: any) => {
       this.data = data;
+      if (data.message && data.message.trim() !== '') {
+        this.notification.showNotification(data.message, data.title);
+      }
       console.log('SignalR NotificationListener',data);
-      // alert('notification listener call');
+      const sound = new Howl({
+        src: ['../../../assets/sound/cute_notification.mp3']
+      });
+      sound.play();
+      // alert('notification listener call'); 
     });
   }
 }

@@ -42,12 +42,13 @@ export class CompanyComponent implements OnInit {
       next: (res:any)=>{
         var x = res;
         console.log('Company Registration result :',x);
-        this.notification.showSuccess("Company successfully Created", "Success");
-        // this.signalR.startConnection();
-        // this.signalR.NotificationListener();
+        //this.notification.showSuccess("Company successfully Created", "Success");
       },
       error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
     })
     console.log('obj :', this.company);
+  }
+  onClickBackToHome(){
+    this.router.navigate(['home']);
   }
 }
